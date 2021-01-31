@@ -1,19 +1,33 @@
 node "test-site" {
 
   file { ['/var/www']:
-    ensure => 'directory',
+    ensure  => 'directory',
     owner   => root,
     group   => root,
     mode    => '755'
   }
 
   file {'/var/www/test-app/current/index.html':
-    ensure => 'file',
+    ensure  => 'file',
     content => 'This is a sample app.',
     owner   => root,
     group   => root,
     mode    => '755'
   }
+  
+  file {'/var/www/releases':
+    ensure  => 'directory',
+    owner   => root,
+    group   => root,
+    mode    => '755'
+  }
+  
+ file {'/var/www/shared':
+    ensure  => 'directory',
+    owner   => root,
+    group   => root,
+    mode    => '755'
+  
 
   class { 'nginx':
     client_max_body_size => '512M',
